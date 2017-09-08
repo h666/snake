@@ -39,10 +39,23 @@ function game(){
 
 function update(){
 	//if(keys[38]) console.log("up"); good for reporting, i will write this into an array myself to check input history(20)
-	if(keys[38]) player.y-=speed;
-	if(keys[40]) player.y+=speed;
-	if(keys[37]) player.x-=speed;
-	if(keys[39]) player.x+=speed;
+	if(keys[38]){
+		player.y-=speed;
+		console.log("Up");
+	}
+	if(keys[40]){
+		player.y+=speed;
+		console.log("Down");
+	}
+	if(keys[37]){
+		player.x-=speed;
+		console.log("Left");
+	}
+
+	if(keys[39]){
+		player.x+=speed;
+		console.log("Right");
+	}
 	
 	if(player.x<0)player.x=0;
 	if(player.y<0)player.y=0;
