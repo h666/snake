@@ -1,5 +1,15 @@
 var can1=document.getElementById("canvas1");
+var can2=document.getElementById("canvas2");
 var con1=can1.getContext("2d");
+var con2=can2.getContext("2d");
+
+con2.font="10px Arial";
+//con2.fillStyle="red";
+
+var vup=0;
+var vdown=0;
+var vright=0;
+var vleft=0;
 
 var keys=[];
 var width=500,height=400,speed=5;
@@ -41,20 +51,28 @@ function update(){
 	//if(keys[38]) console.log("up"); good for reporting, i will write this into an array myself to check input history(20)
 	if(keys[38]){
 		player.y-=speed;
-		console.log("Up");
+		//console.log("Up");
+		con2.clearRect(0,0,49,12);
+		con2.fillText("Up " + vup++,10,10);
 	}
 	if(keys[40]){
 		player.y+=speed;
-		console.log("Down");
+		//console.log("Down");
+		con2.clearRect(50,0,49,12);
+		con2.fillText("Down " + vdown++,50,10);
 	}
 	if(keys[37]){
 		player.x-=speed;
-		console.log("Left");
+		//console.log("Left");
+		con2.clearRect(105,0,49,12);
+		con2.fillText("Left " + vleft++,105,10);
 	}
 
 	if(keys[39]){
 		player.x+=speed;
-		console.log("Right");
+		//console.log("Right");
+		con2.clearRect(155,0,49,12);
+		con2.fillText("Right " + vright++,155,10);
 	}
 	
 	if(player.x<0)player.x=0;
