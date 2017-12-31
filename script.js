@@ -13,6 +13,8 @@ var vleft=0;
 
 var playerDirection=0; //player direction for automovement of player
 
+var cubeDestroyed=0; //Detection if cube had been destroyed by player
+
 var keys=[];
 var width=500,height=400,speed=5;
 
@@ -24,13 +26,12 @@ var player={   //player character for control
 };
 
 var cube={ //enemy!
-	//x:Math.random()*(width-20),
-	//y:Math.random()*(height-20),
 	y:Math.floor(Math.random() * 10) * 40,
 	x:Math.floor(Math.random() * 10) * 40,
 	width:20,
 	height:20
 };
+
 window.addEventListener("keydown", function(e){
 	keys[e.keyCode]=true;
 }, false);
@@ -48,13 +49,12 @@ right-39
 
 function game(){
 	update();
-	//render();
 	movement();
 	collision();
+	render();
 }
 
 function update(){
-	//if(keys[38]) console.log("up"); good for reporting, i will write this into an array myself to check input history(20)
 	if(keys[38]){
 		//player.y-=speed;
 		//console.log("Up");
@@ -91,16 +91,6 @@ function update(){
 	if(player.y>=height-player.height)player.y=height-player.height;
 	
 }
-
-/*
-function render(){
-	con1.clearRect(0,0,width,height);
-	con1.fillStyle="Blue";
-	con1.fillRect(player.x, player.y, player.width, player.height);
-	con1.fillStyle="Yellow";
-	con1.fillRect(cube.x, cube.y, cube.width, cube.height);
-}
-*/
 
 function movement(){
 	switch(playerDirection){
@@ -141,9 +131,22 @@ function movement(){
 function collision(){
 	//collision detection
 	if(player.x==Math.round(cube.x)&&player.y==Math.round(cube.y)){
-		alert("done!");
+		//var cubeDestroyed=1;
+		cube.y=Math.floor(Math.random() * 10) * 40;
+		cube.x=Math.floor(Math.random() * 10) * 40;
 	}
 	console.log(player.x,player.y,cube.x,cube.y);
+}
+
+function render(){
+
+	/*
+	con1.clearRect(0,0,width,height);
+	con1.fillStyle="Blue";
+	con1.fillRect(player.x, player.y, player.width, player.height);
+	con1.fillStyle="Yellow";
+	con1.fillRect(cube.x, cube.y, cube.width, cube.height);
+	*/
 }
 
 
