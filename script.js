@@ -49,42 +49,37 @@ right-39
 
 function game(){
 	update();
-	movement();
 	collision();
 	render();
 }
 
 function update(){
 	if(keys[38]){
-		//player.y-=speed;
-		//console.log("Up");
 		con2.clearRect(0,0,49,12);
 		con2.fillText("Up " + vup++,10,10);
 		playerDirection=1;
+		player.y-=speed;
 	}
 	if(keys[40]){
-		//player.y+=speed;
-		//console.log("Down");
 		con2.clearRect(50,0,49,12);
 		con2.fillText("Down " + vdown++,50,10);
 		playerDirection=2;
+		player.y+=speed;
 	}
 	if(keys[37]){
-		//player.x-=speed;
-		//console.log("Left");
 		con2.clearRect(105,0,49,12);
 		con2.fillText("Left " + vleft++,105,10);
 		playerDirection=3;
+		player.x-=speed;
 	}
 
 	if(keys[39]){
-		//player.x+=speed;
-		//console.log("Right");
 		con2.clearRect(155,0,49,12);
 		con2.fillText("Right " + vright++,155,10);
 		playerDirection=4;
+		player.x+=speed;
 	}
-	
+
 	if(player.x<0)player.x=0;
 	if(player.y<0)player.y=0;
 	if(player.x>=width-player.width)player.x=width-player.width;
@@ -93,39 +88,7 @@ function update(){
 }
 
 function movement(){
-	switch(playerDirection){
-		case 1:
-			con1.clearRect(0,0,width,height);
-			con1.fillStyle="Blue";
-			con1.fillRect(player.x, player.y-=speed, player.width, player.height);
-			con1.fillStyle="Yellow";
-			con1.fillRect(cube.x, cube.y, cube.width, cube.height);
-		break;
 
-		case 2:
-			con1.clearRect(0,0,width,height);
-			con1.fillStyle="Blue";
-			con1.fillRect(player.x, player.y+=speed, player.width, player.height);
-			con1.fillStyle="Yellow";
-			con1.fillRect(cube.x, cube.y, cube.width, cube.height);
-		break;
-
-		case 3:
-			con1.clearRect(0,0,width,height);
-			con1.fillStyle="Blue";
-			con1.fillRect(player.x-=speed, player.y, player.width, player.height);
-			con1.fillStyle="Yellow";
-			con1.fillRect(cube.x, cube.y, cube.width, cube.height);
-		break;
-
-		case 4:
-			con1.clearRect(0,0,width,height);
-			con1.fillStyle="Blue";
-			con1.fillRect(player.x+=speed, player.y, player.width, player.height);
-			con1.fillStyle="Yellow";
-			con1.fillRect(cube.x, cube.y, cube.width, cube.height);
-		break;
-	}
 }
 
 function collision(){
@@ -135,18 +98,14 @@ function collision(){
 		cube.y=Math.floor(Math.random() * 10) * 40;
 		cube.x=Math.floor(Math.random() * 10) * 40;
 	}
-	console.log(player.x,player.y,cube.x,cube.y);
 }
 
 function render(){
-
-	/*
-	con1.clearRect(0,0,width,height);
+	con1.clearRect(cube.x,cube.y,cube.width,cube.height);
 	con1.fillStyle="Blue";
 	con1.fillRect(player.x, player.y, player.width, player.height);
 	con1.fillStyle="Yellow";
 	con1.fillRect(cube.x, cube.y, cube.width, cube.height);
-	*/
 }
 
 
