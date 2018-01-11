@@ -13,7 +13,9 @@ var vleft=0;
 
 var playerDirection=0; //player direction for automovement of player
 
-var cubeDestroyed=0; //Detection if cube had been destroyed by player
+var cubeDestroyed=1; //Detection if cube had been destroyed by player
+
+document.getElementById("span1").innerHTML=0;
 
 var keys=[];
 var width=500,height=400,speed=5;
@@ -94,9 +96,10 @@ function movement(){
 function collision(){
 	//collision detection
 	if(player.x==Math.round(cube.x)&&player.y==Math.round(cube.y)){
-		//var cubeDestroyed=1;
 		cube.y=Math.floor(Math.random() * 10) * 40;
 		cube.x=Math.floor(Math.random() * 10) * 40;
+		cubeDestroyed=cubeDestroyed+1;
+		document.getElementById("span1").innerHTML=cubeDestroyed-1;
 	}
 }
 
